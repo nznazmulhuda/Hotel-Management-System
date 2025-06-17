@@ -1,0 +1,124 @@
+## 🏨 Hotel Management System – Requirements Specification
+
+---
+
+### 🔒 1. *Authentication & User Roles*
+
+* *Login / Logout*
+* *User Registration (Admin controlled)*
+* *Role Management*:
+
+  * Admin
+  * Front Desk
+  * Housekeeping
+  * Restaurant Staff
+  * Inventory Manager
+
+---
+
+### 🛏 2. *Room Management*
+
+* Add/edit/delete room types (Single, Double, Deluxe, Suite)
+* Assign room numbers and categories
+* Set pricing per night
+* Track occupancy status (Available, Booked, Maintenance)
+* Amenities & photo gallery
+
+---
+
+### 📖 3. *Room Booking Module*
+
+* Create/Edit/Delete bookings
+* Real-time room availability check
+* Assign room to guest
+* Check-in / Check-out functionality
+* Booking confirmation (email/SMS optional)
+* Booking source (Walk-in, Online, Agent)
+
+---
+
+### 👤 4. *Guest Management*
+
+* Capture guest details (Name, ID, Contact, Nationality)
+* Maintain guest history and stay records
+* Search guests by name, phone, or ID
+* Blacklist/restricted guests option
+
+---
+
+### 🏛 5. *Conference / Banquet Hall Booking*
+
+* Add/edit hall details (capacity, location, equipment)
+* Hall pricing by hour/day
+* Hall booking calendar view
+* Track hall bookings with guest/organization
+* Service requests (projector, seating style, food)
+
+---
+
+### 🧹 6. *Room Service & Housekeeping*
+
+* Request logging by room number
+* Service status (Requested, In Progress, Completed)
+* Room cleaning schedule & assignment
+* Special instructions (e.g. linen change)
+
+---
+
+### 🧾 7. *Front Desk Dashboard*
+
+* Today's arrivals & departures
+* Late check-out & early check-in tracking
+* Guest in-house list
+* Maintenance alerts
+* Walk-in guest check-in
+
+---
+
+### 🍽 8. *Restaurant / F\&B Management*
+
+* Menu Management (add/update items, categories)
+* Guest ordering (room-wise or table-wise)
+* Kitchen Order Tickets (KOT)
+* Table management (for dine-in orders)
+* Billing and integration with guest folio
+* Staff-wise order tracking
+
+---
+
+### 📅 12. *Calendar & Scheduling*
+
+* Visual calendar for:
+
+  * Room bookings
+  * Hall bookings
+  * Housekeeping schedules
+* Color-coded availability status
+
+---
+
+### ⚙ 13. *System Settings*
+
+* Hotel Info (name, address, logo)
+* Tax & charges setup
+* Timezone and currency settings
+* User role permission management
+
+---
+
+### 🧩 Optional Features
+
+* SMS/Email Notifications
+* Loyalty Program for returning guests
+* Integration with website booking engine
+* Mobile App for Admin/Staff
+
+---
+
+### ✅ Technologies Suggested:
+
+* *Backend*: PHP / Laravel / Node.js
+* *Frontend*: HTML5, Bootstrap 5, JS/jQuery
+* *Database*: MySQL / MariaDB
+* *PDF Reports*: DomPDF or TCPDF
+* *Charting*: Chart.js or Google Charts
