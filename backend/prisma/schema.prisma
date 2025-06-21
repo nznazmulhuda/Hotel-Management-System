@@ -24,54 +24,97 @@ model User {
   isActive    Boolean  @default(false)
   phoneNumber String
   createdAt   DateTime @default(now())
-  updatedAt   DateTime  @updatedAt
+  updatedAt   DateTime @updatedAt
 }
 
 model RoomType {
   id          Int     @id @default(autoincrement())
-  name        String  // Single, Double, Deluxe, etc.
+  name        String // Single, Double, Deluxe, etc.
   description String?
   rooms       Room[]
 
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Room {
-  id            Int           @id @default(autoincrement())
-  roomNumber    String        @unique
-  category      String        // e.g., "Sea View", "Executive"
+  id            Int        @id @default(autoincrement())
+  roomNumber    String     @unique
+  category      String
   pricePerNight Float
-  status        RoomStatus    @default(AVAILABLE)
+  status        RoomStatus @default(AVAILABLE)
 
-  typeId        Int
-  type          RoomType      @relation(fields: [typeId], references: [id])
+  typeId Int
+  type   RoomType @relation(fields: [typeId], references: [id])
 
-  amenities     RoomAmenity[]
-  images        RoomImage[]
+  amenities RoomAmenity[]
+  images    RoomImage[]
+  bookings  Booking[] // ✅ Add this line
 
-  createdAt     DateTime      @default(now())
-  updatedAt     DateTime      @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model RoomAmenity {
-  id       Int      @id @default(autoincrement())
-  roomId   Int
-  name     String   // e.g., "WiFi", "Air Conditioning"
+  id     Int    @id @default(autoincrement())
+  roomId Int
+  name   String // e.g., "WiFi", "Air Conditioning"
 
-  room     Room     @relation(fields: [roomId], references: [id])
+  room Room @relation(fields: [roomId], references: [id])
 }
 
 model RoomImage {
-  id       Int      @id @default(autoincrement())
-  url      String
-  roomId   Int
+  id     Int    @id @default(autoincrement())
+  url    String
+  roomId Int
 
-  room     Room     @relation(fields: [roomId], references: [id])
+  room Room @relation(fields: [roomId], references: [id])
 }
 
 enum RoomStatus {
   AVAILABLE
   BOOKED
   MAINTENANCE
+}
+
+model Guest {
+  id          Int       @id @default(autoincrement())
+  name        String
+  email       String?
+  phone       String
+  nationality String?
+  idNumber    String
+  blacklisted Boolean @default(false)
+  bookings    Booking[]
+
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+}
+
+model Booking {
+  id           Int           @id @default(autoincrement())
+  roomId       Int
+  guestId      Int
+  source       BookingSource
+  status       BookingStatus @default(BOOKED)
+  checkInDate  DateTime
+  checkOutDate DateTime
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+
+  room  Room  @relation(fields: [roomId], references: [id])
+  guest Guest @relation(fields: [guestId], references: [id])
+}
+
+enum BookingStatus {
+  BOOKED
+  CHECKED_IN
+  CHECKED_OUT
+  CANCELLED
+}
+
+enum BookingSource {
+  WALK_IN
+  ONLINE
+  AGENT
 }
