@@ -48,7 +48,10 @@ export const authorizeRoles: any =
   (...roles: string[]) =>
   (req: Request, res: Response, next: NextFunction) => {
     if (!roles.includes(req.userRole || "")) {
-      return res.status(403).json({ message: "Forbidden: insufficient role" });
+      return res.status(403).json({
+        message: `Access denied for role: ${req.userRole}`,
+        allowedRoles: roles,
+      });
     }
     next();
   };

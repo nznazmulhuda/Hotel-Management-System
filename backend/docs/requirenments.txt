@@ -86,7 +86,7 @@
 
 ---
 
-### 📅 12. *Calendar & Scheduling*
+### 📅 9. *Calendar & Scheduling*
 
 * Visual calendar for:
 
@@ -97,7 +97,7 @@
 
 ---
 
-### ⚙ 13. *System Settings*
+### ⚙ 10. *System Settings*
 
 * Hotel Info (name, address, logo)
 * Tax & charges setup
