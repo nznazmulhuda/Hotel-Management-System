@@ -78,17 +78,19 @@ enum RoomStatus {
 }
 
 model Guest {
-  id          Int       @id @default(autoincrement())
+  id          Int     @id @default(autoincrement())
   name        String
   email       String?
   phone       String
   nationality String?
   idNumber    String
   blacklisted Boolean @default(false)
-  bookings    Booking[]
 
-  createdAt    DateTime      @default(now())
-  updatedAt    DateTime      @updatedAt
+  bookings     Booking[] // room bookings
+  hallBookings HallBooking[] // banquet/conference bookings
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Booking {
@@ -117,4 +119,63 @@ enum BookingSource {
   WALK_IN
   ONLINE
   AGENT
+}
+
+model Hall {
+  id           Int             @id @default(autoincrement())
+  name         String
+  location     String
+  capacity     Int
+  pricePerHour Float
+  pricePerDay  Float
+  equipment    HallEquipment[] // ✅ now normalized
+  bookings     HallBooking[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model HallEquipment {
+  id     Int    @id @default(autoincrement())
+  name   String
+  hallId Int
+
+  hall Hall @relation(fields: [hallId], references: [id])
+}
+
+model HallBooking {
+  id            Int               @id @default(autoincrement())
+  hallId        Int
+  guestId       Int
+  organization  String?
+  startTime     DateTime
+  endTime       DateTime
+  status        HallBookingStatus @default(BOOKED)
+  services      HallService[]
+  bookingSource BookingSource
+
+  hall  Hall  @relation(fields: [hallId], references: [id])
+  guest Guest @relation(fields: [guestId], references: [id])
+}
+
+model HallService {
+  id        Int         @id @default(autoincrement())
+  bookingId Int
+  type      ServiceType
+  details   String?
+
+  booking HallBooking @relation(fields: [bookingId], references: [id])
+}
+
+enum HallBookingStatus {
+  BOOKED
+  IN_USE
+  COMPLETED
+  CANCELLED
+}
+
+enum ServiceType {
+  PROJECTOR
+  SEATING
+  FOOD
 }
