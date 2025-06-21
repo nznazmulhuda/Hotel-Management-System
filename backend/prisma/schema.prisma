@@ -26,3 +26,52 @@ model User {
   createdAt   DateTime @default(now())
   updatedAt   DateTime  @updatedAt
 }
+
+model RoomType {
+  id          Int     @id @default(autoincrement())
+  name        String  // Single, Double, Deluxe, etc.
+  description String?
+  rooms       Room[]
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Room {
+  id            Int           @id @default(autoincrement())
+  roomNumber    String        @unique
+  category      String        // e.g., "Sea View", "Executive"
+  pricePerNight Float
+  status        RoomStatus    @default(AVAILABLE)
+
+  typeId        Int
+  type          RoomType      @relation(fields: [typeId], references: [id])
+
+  amenities     RoomAmenity[]
+  images        RoomImage[]
+
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+}
+
+model RoomAmenity {
+  id       Int      @id @default(autoincrement())
+  roomId   Int
+  name     String   // e.g., "WiFi", "Air Conditioning"
+
+  room     Room     @relation(fields: [roomId], references: [id])
+}
+
+model RoomImage {
+  id       Int      @id @default(autoincrement())
+  url      String
+  roomId   Int
+
+  room     Room     @relation(fields: [roomId], references: [id])
+}
+
+enum RoomStatus {
+  AVAILABLE
+  BOOKED
+  MAINTENANCE
+}

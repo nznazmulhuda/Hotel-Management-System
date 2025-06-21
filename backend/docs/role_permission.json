@@ -1,0 +1,93 @@
+{
+  "UserManagement": {
+    "Admin": "full",
+    "FrontDesk": "none",
+    "Housekeeping": "none",
+    "RestaurantStaff": "none",
+    "InventoryManager": "none"
+  },
+  "RoomManagement": {
+    "Admin": "full",
+    "FrontDesk": "view",
+    "Housekeeping": "view",
+    "RestaurantStaff": "none",
+    "InventoryManager": "view"
+  },
+  "RoomBooking": {
+    "Admin": "full",
+    "FrontDesk": "full",
+    "Housekeeping": "none",
+    "RestaurantStaff": "none",
+    "InventoryManager": "none"
+  },
+  "GuestManagement": {
+    "Admin": "full",
+    "FrontDesk": "full",
+    "Housekeeping": "none",
+    "RestaurantStaff": "none",
+    "InventoryManager": "none"
+  },
+  "HallBooking": {
+    "Admin": "full",
+    "FrontDesk": "full",
+    "Housekeeping": "none",
+    "RestaurantStaff": "none",
+    "InventoryManager": "none"
+  },
+  "Housekeeping": {
+    "Admin": "view",
+    "FrontDesk": "create",
+    "Housekeeping": "full",
+    "RestaurantStaff": "none",
+    "InventoryManager": "view"
+  },
+  "FrontDeskDashboard": {
+    "Admin": "full",
+    "FrontDesk": "full",
+    "Housekeeping": "view",
+    "RestaurantStaff": "none",
+    "InventoryManager": "none"
+  },
+  "RestaurantManagement": {
+    "Admin": "full",
+    "FrontDesk": "none",
+    "Housekeeping": "none",
+    "RestaurantStaff": "full",
+    "InventoryManager": "viewStock"
+  },
+  "InventoryStore": {
+    "Admin": "full",
+    "FrontDesk": "none",
+    "Housekeeping": "none",
+    "RestaurantStaff": "none",
+    "InventoryManager": "full"
+  },
+  "BillingPayments": {
+    "Admin": "full",
+    "FrontDesk": "view_collect",
+    "Housekeeping": "none",
+    "RestaurantStaff": "addFoodItems",
+    "InventoryManager": "none"
+  },
+  "CalendarScheduling": {
+    "Admin": "full",
+    "FrontDesk": "view_edit",
+    "Housekeeping": "view",
+    "RestaurantStaff": "none",
+    "InventoryManager": "none"
+  },
+  "SystemSettings": {
+    "Admin": "full",
+    "FrontDesk": "none",
+    "Housekeeping": "none",
+    "RestaurantStaff": "none",
+    "InventoryManager": "none"
+  },
+  "ReportsAnalytics": {
+    "Admin": "full",
+    "FrontDesk": "viewLimited",
+    "Housekeeping": "none",
+    "RestaurantStaff": "none",
+    "InventoryManager": "inventoryReports"
+  }
+}
