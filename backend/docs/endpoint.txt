@@ -1,9 +1,0 @@
-=====================================================================
-=                              Auth                                 =
-=====================================================================
-
-get -> /users :-> all user
-get -> /user :-> get single user by pass id as query
-post -> /user :-> add single user
-put -> /user :-> update single user
-delete -> /user :-> delete user by pass id as query

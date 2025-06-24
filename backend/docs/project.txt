@@ -1,0 +1,6 @@
+role:
+    | "admin"
+    | "front-desk"
+    | "housekeeping"
+    | "restaurant-staff"
+    | "inventory-manager";
