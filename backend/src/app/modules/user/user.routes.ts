@@ -21,7 +21,7 @@ userRoute.get("/users", permittedRoles("admin"), getAllUserFromDB); // get all u
 userRoute.get("/user/:id", permittedRoles("admin"), getSingleUserFromDB); // get single user
 userRoute.post(
   "/user",
-  permittedRoles("admin"),
+  // permittedRoles("admin"),
   validateRequest(createUserZodSchema),
   createUserOnDB
 ); // create new user

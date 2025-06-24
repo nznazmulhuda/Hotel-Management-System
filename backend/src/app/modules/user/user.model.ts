@@ -21,6 +21,9 @@ const UserSchema: Schema<IUser> = new Schema(
       default: "admin",
     },
     isActive: { type: Boolean, default: false },
+    isEmailVerified: { type: Boolean, default: false },
+    otp: { type: Number, default: undefined },
+    otpExpires: { type: Date, default: undefined },
   },
   { timestamps: true }
 );

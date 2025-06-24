@@ -13,3 +13,19 @@ interface ILoginResponse {
     isActive: boolean;
   };
 }
+
+interface IForgetPasswordRequest {
+  email: string;
+}
+
+interface IResetPasswordRequest {
+  email: string;
+  otp: string;
+  newPassword: string;
+}
+
+interface IChangePasswordRequest {
+  username: string;
+  oldPassword: string;
+  newPassword: string;
+}

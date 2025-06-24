@@ -12,4 +12,7 @@ interface IUser {
     | "inventory-manager";
   comparePassword: (givenPassword: string) => Promise<boolean>;
   isActive: boolean;
+  isEmailVerified: { type: Boolean; default: false };
+  otp: String;
+  otpExpires: Date;
 }
