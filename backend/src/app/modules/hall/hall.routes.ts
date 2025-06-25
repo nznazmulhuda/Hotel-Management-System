@@ -10,8 +10,7 @@ import { permittedRoles } from "../../middlewares/permittedRoles";
 const hallRoutes = express.Router();
 
 hallRoutes.post(
-  "/halls",
-  validateRequest(createHallSchema),
+  "/hall",
   permittedRoles("admin", "front-desk"),
   HallService.createHall
 );
@@ -21,19 +20,18 @@ hallRoutes.get(
   HallService.getAllHalls
 );
 hallRoutes.get(
-  "/halls/:id",
+  "/hall/:id",
   permittedRoles("admin", "front-desk"),
   HallService.getHallById
 );
 permittedRoles("admin", "front-desk"),
   hallRoutes.put(
-    "/halls/:id",
-    validateRequest(updateHallSchema),
+    "/hall/:id",
     permittedRoles("admin", "front-desk"),
     HallService.updateHall
   );
 hallRoutes.delete(
-  "/halls/:id",
+  "/hall/:id",
   permittedRoles("admin", "front-desk"),
   HallService.deleteHall
 );

@@ -11,4 +11,4 @@ const HallSchema = new Schema<IHall>(
   { timestamps: true }
 );
 
-export const Hall = model<IHall>("Hall", HallSchema);
+export const Hall = model<IHall>("hall", HallSchema);

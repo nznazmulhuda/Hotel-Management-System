@@ -11,7 +11,6 @@ const bookingRoute = express.Router();
 
 bookingRoute.post(
   "/bookings",
-  validateRequest(createBookingSchema),
   permittedRoles("admin", "front-desk"),
   BookingService.createBooking
 );
@@ -27,7 +26,6 @@ bookingRoute.get(
 );
 bookingRoute.put(
   "/bookings/:id",
-  validateRequest(updateBookingSchema),
   permittedRoles("admin", "front-desk"),
   BookingService.updateBooking
 );

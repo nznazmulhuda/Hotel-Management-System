@@ -8,7 +8,7 @@ export class BookingController {
   }
 
   static async getAllBookings() {
-    return await Booking.find()
+    return await Booking.find({})
       .populate("guest", "name email number")
       .populate("itemId"); // will populate either Room or Hall depending on itemType
   }

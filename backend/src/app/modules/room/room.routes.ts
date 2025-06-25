@@ -10,8 +10,7 @@ import { permittedRoles } from "../../middlewares/permittedRoles";
 const roomRoutes: Router = Router();
 
 roomRoutes.post(
-  "/rooms",
-  validateRequest(createRoomSchema),
+  "/room",
   permittedRoles("admin", "front-desk"),
   RoomService.createRoom
 );
@@ -21,18 +20,17 @@ roomRoutes.get(
   RoomService.getAllRooms
 );
 roomRoutes.get(
-  "/rooms/:id",
+  "/room/:id",
   permittedRoles("admin", "front-desk"),
   RoomService.getRoomById
 );
 roomRoutes.put(
-  "/rooms/:id",
-  validateRequest(updateRoomSchema),
+  "/room/:id",
   permittedRoles("admin", "front-desk"),
   RoomService.updateRoom
 );
 roomRoutes.delete(
-  "/rooms/:id",
+  "/room/:id",
   permittedRoles("admin", "front-desk"),
   RoomService.deleteRoom
 );
