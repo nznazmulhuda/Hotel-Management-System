@@ -1,36 +1,24 @@
 import { z } from "zod";
 
-// Helper for itemType enum
-const itemTypeEnum = z.enum(["room", "hall"]);
-
-export const createBookingSchema = z.object({
+// ✅ Step 1: Define core object
+const bookingBaseSchema = z.object({
   guest: z.string().min(1, "Guest ID is required"),
-  itemType: itemTypeEnum,
+  itemType: z.enum(["room", "hall"]),
   itemId: z.string().min(1, "Item ID is required"),
   checkInDate: z.preprocess(
     (arg) =>
       typeof arg === "string" || arg instanceof Date
         ? new Date(arg)
         : undefined,
-    z.date().refine((date) => date > new Date(), {
-      message: "Check-in date must be in the future",
-    })
+    z.date({ required_error: "Check-in date is required" })
   ),
-  checkOutDate: z
-    .preprocess(
-      (arg) =>
-        typeof arg === "string" || arg instanceof Date
-          ? new Date(arg)
-          : undefined,
-      z.date()
-    )
-    .refine(
-      (date, ctx) => {
-        const checkIn = ctx.parent?.checkInDate;
-        return checkIn ? date > checkIn : true;
-      },
-      { message: "Check-out date must be after check-in date" }
-    ),
+  checkOutDate: z.preprocess(
+    (arg) =>
+      typeof arg === "string" || arg instanceof Date
+        ? new Date(arg)
+        : undefined,
+    z.date({ required_error: "Check-out date is required" })
+  ),
   bookingStatus: z
     .enum(["pending", "confirmed", "cancelled", "completed"])
     .optional(),
@@ -40,5 +28,28 @@ export const createBookingSchema = z.object({
   specialNote: z.string().max(500).optional(),
 });
 
-// Update Booking Validation (partial)
-export const updateBookingSchema = createBookingSchema.partial();
+// ✅ Step 2: Export .partial() from base schema
+export const updateBookingSchema = bookingBaseSchema.partial();
+
+// ✅ Step 3: Use superRefine on base schema for create
+export const createBookingSchema = bookingBaseSchema.superRefine(
+  (data, ctx) => {
+    const now = new Date();
+
+    if (data.checkInDate <= now) {
+      ctx.addIssue({
+        path: ["checkInDate"],
+        code: z.ZodIssueCode.custom,
+        message: "Check-in date must be in the future",
+      });
+    }
+
+    if (data.checkOutDate <= data.checkInDate) {
+      ctx.addIssue({
+        path: ["checkOutDate"],
+        code: z.ZodIssueCode.custom,
+        message: "Check-out date must be after check-in date",
+      });
+    }
+  }
+);

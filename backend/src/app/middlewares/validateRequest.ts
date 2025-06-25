@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction, RequestHandler } from "express";
-import { AnyZodObject } from "zod";
+import { ZodTypeAny } from "zod";
 
-const validateRequest = (schema: AnyZodObject): RequestHandler => {
+const validateRequest = (schema: ZodTypeAny): RequestHandler => {
   return (req, res, next) => {
     try {
       schema.parse({
