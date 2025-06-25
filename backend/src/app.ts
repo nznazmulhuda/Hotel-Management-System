@@ -6,7 +6,8 @@ import userRoute from "./app/modules/user/user.routes";
 import loginRoute from "./app/modules/auth/auth.routes";
 import { checkUserIsActive } from "./app/middlewares/checkUserIsActive";
 import guestRoute from "./app/modules/guest/guest.routes";
-import RoomRoute from "./app/modules/room/room.routes";
+import roomRoute from "./app/modules/room/room.routes";
+import hallRoute from "./app/modules/hall/hall.routes";
 
 const app: Application = express();
 
@@ -29,7 +30,8 @@ app.use("/api", verifyToken); // jwt token verifier
 app.use("/api", checkUserIsActive); // jwt token verifier
 app.use("/api", userRoute); // user all route
 app.use("/api", guestRoute); // guest all route
-app.use("/api", RoomRoute); // room all route
+app.use("/api", roomRoute); // room all route
+app.use("/api", hallRoute); // hall all route
 
 // test end point
 app.get("/api/test", (req: Request, res: Response) => {
