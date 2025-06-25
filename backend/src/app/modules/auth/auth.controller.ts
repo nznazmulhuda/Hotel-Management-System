@@ -1,9 +1,9 @@
-import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { generateOTP, generateToken, sendMail } from "./auth.utils";
+import { generateOTP, generateToken } from "./auth.utils";
 import config from "../../config";
 import { User } from "../user/user.model";
 import { generateEmailTemplate } from "../../utils/generateEmailTemplate";
+import { sendMail } from "../../utils/sendMail";
 
 export class AuthService {
   static async login(payload: ILoginRequest): Promise<ILoginResponse> {
